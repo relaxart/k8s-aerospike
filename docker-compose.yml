@@ -1,0 +1,25 @@
+version: '2.1'
+
+services: 
+    aeronode1:
+        build:
+            context: .
+        environment:
+            SEEDER: 1 
+            AERO_DATA_FILE_SIZE_GB: 2
+            AERO_DATA_EVICTION_DAYS: 1
+            AERO_DATA_MEMORY_SIZE_GB: 1
+    aeronode2:
+        build:
+            context: .
+        environment:
+            AERO_DATA_FILE_SIZE_GB: 2
+            AERO_DATA_EVICTION_DAYS: 1
+            AERO_DATA_MEMORY_SIZE_GB: 1
+    aeronode3:
+        build:
+            context: .
+        environment:
+            AERO_DATA_FILE_SIZE_GB: 2
+            AERO_DATA_EVICTION_DAYS: 1
+            AERO_DATA_MEMORY_SIZE_GB: 1
