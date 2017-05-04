@@ -1,25 +1,33 @@
-version: '2.1'
+version: '3'
 
 services: 
-    aeronode1:
+    node1:
         build:
             context: .
         environment:
-            SEEDER: 1 
+            AERO_NODE1: node2
+            AERO_NODE2: node3
+            AERO_MASTER: 1
             AERO_DATA_FILE_SIZE_GB: 2
             AERO_DATA_EVICTION_DAYS: 1
             AERO_DATA_MEMORY_SIZE_GB: 1
-    aeronode2:
+        networks:
+            - default    
+    node2:    
         build:
             context: .
         environment:
             AERO_DATA_FILE_SIZE_GB: 2
             AERO_DATA_EVICTION_DAYS: 1
             AERO_DATA_MEMORY_SIZE_GB: 1
-    aeronode3:
+        networks:
+            - default
+    node3:
         build:
             context: .
         environment:
             AERO_DATA_FILE_SIZE_GB: 2
             AERO_DATA_EVICTION_DAYS: 1
             AERO_DATA_MEMORY_SIZE_GB: 1
+        networks:
+            - default
