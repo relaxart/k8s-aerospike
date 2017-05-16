@@ -20,7 +20,7 @@ if [ -n "$AERO_MASTER" ]; then
 		asinfo -v 'tip:host=$AERO_NODE1;port=3002'
 		asinfo -v 'tip:host=$AERO_NODE2;port=3002'
 	}
-	 Assign & asd --foreground
+	Assign & asd --foreground
 else
 	asd --foreground
 fi
