@@ -14,11 +14,14 @@ Template data_memory_size_gb "$AERO_DATA_MEMORY_SIZE_GB" 2 $CONF
 
 if [ -n "$AERO_MASTER" ]; then
 	Assign() {
-		dockerize -wait tcp://127.0.0.1:3000
-		dockerize -wait tcp://$AERO_NODE1:3002
-		dockerize -wait tcp://$AERO_NODE2:3002
-		asinfo -v 'tip:host=$AERO_NODE1;port=3002'
-		asinfo -v 'tip:host=$AERO_NODE2;port=3002'
+		dockerize -wait tcp://127.0.0.1:3002	
+		dockerize -wait tcp://127.0.0.1:3000	
+		IFS=',' read -ra NODES <<< "$AERO_NODES"
+		for NODE in ${NODES[@]}
+		do
+			dockerize -wait tcp://$NODE:3002
+			asinfo -v "tip:host=$NODE;port=3002"
+		done
 	}
 	Assign & asd --foreground
 else
